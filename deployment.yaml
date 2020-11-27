@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: myapp
+ labels:
+  app: myapp
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: myapp
+ template:
+  metadata: 
+   labels:
+    app: myapp
+  spec:
+   containers:
+   - name: myapp
+     image: kumarmitdocker/devops:tagversion
+     ports:
+     - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+spec:
+  type: LoadBalancer
+  selector:
+    app: myapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
