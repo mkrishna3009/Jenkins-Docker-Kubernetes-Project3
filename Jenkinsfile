@@ -59,6 +59,7 @@ pipeline {
 			    sh 'ls -ltr'
 			    sh 'pwd'
 			    sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
+			    echo "Amit"
 			    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'test.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
 			    echo "Deployment Finished ..."
 		    }
