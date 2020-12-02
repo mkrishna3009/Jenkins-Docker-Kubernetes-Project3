@@ -8,7 +8,7 @@ pipeline {
 		PROJECT_ID = 'jenkins-296812'
                 CLUSTER_NAME = 'k8s-cluster'
                 LOCATION = 'us-central1-c'
-                CREDENTIALS_ID = 'KUBERNETES_JSON'		
+                CREDENTIALS_ID = 'kubernetes'		
 	}
 	
     stages {
