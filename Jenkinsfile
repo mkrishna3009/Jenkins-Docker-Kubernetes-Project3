@@ -48,7 +48,7 @@ pipeline {
             				sh "docker login -u ameintu -p ${DOCKER_HUB_CREDENTIALS}"
 				    }
 				        myimage.push()
-				    }
+				    
 			    }
 		    }
 	    }
