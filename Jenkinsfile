@@ -18,7 +18,9 @@ pipeline {
 	   stage('Build') { 
                 steps {
                   echo "Cleaning and packaging..."
-                  sh 'mvn clean package'
+                  def mavenHome =  tool name: "Maven", type: "maven"
+				  def mavenCMD = "${mavenHome}/bin/mvn"
+				  sh "${mavenCMD} clean package"
                 }
            }
 	    
