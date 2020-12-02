@@ -7,10 +7,7 @@ pipeline {
 	environment {
 		registry = "amit873/test77" 
 	        registryCredential = 'dockerhub_id' 
-		PROJECT_ID = 'jenkins-296812'
-                CLUSTER_NAME = 'k8s-cluster'
-                LOCATION = 'us-central1-c'
-                CREDENTIALS_ID = 'KUBERNETES_JSON'		
+			
 	}
 	
     stages {
