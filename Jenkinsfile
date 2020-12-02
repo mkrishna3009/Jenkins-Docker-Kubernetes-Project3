@@ -1,5 +1,8 @@
 pipeline {
     agent any 	
+	tools {
+		maven 'Maven'
+	}
 	environment {
 		
 		PROJECT_ID = 'jenkins-296812'
@@ -17,10 +20,7 @@ pipeline {
            
 	   stage('Build') { 
                 steps {
-                  echo "Cleaning and packaging..."
-                  def mavenHome =  tool name: "Maven", type: "maven"
-				  def mavenCMD = "${mavenHome}/bin/mvn"
-				  sh "${mavenCMD} clean package"
+					sh 'mvn clean package'                  
                 }
            }
 	    
