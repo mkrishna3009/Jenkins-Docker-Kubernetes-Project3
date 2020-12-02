@@ -2,10 +2,10 @@ pipeline {
     agent any 	
 	environment {
 		
-		PROJECT_ID = 'third-fire-260721'
+		PROJECT_ID = 'jenkins-296812'
                 CLUSTER_NAME = 'k8s-cluster'
-                LOCATION = 'europe-north1-a'
-                CREDENTIALS_ID = 'kubernetes'		
+                LOCATION = 'us-central1-c'
+                CREDENTIALS_ID = 'KUBERNETES_JSON'		
 	}
 	
     stages {	
@@ -32,7 +32,7 @@ pipeline {
 		steps {
 		   sh 'whoami'
                    script {
-		      myimage = docker.build("kumarmitdocker/devops:${env.BUILD_ID}")
+		      myimage = docker.build("amit873/devops:${env.BUILD_ID}")
                    }
                 }
 	   }
