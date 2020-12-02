@@ -47,7 +47,7 @@ pipeline {
 				    withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
             				sh "docker login -u ameintu -p ${DOCKER_HUB_CREDENTIALS}"
 				    }
-				        myimage.push()
+				        myimage.push("${env.BUILD_ID}")
 				    
 			    }
 		    }
