@@ -5,8 +5,8 @@ pipeline {
 	}
 	
 	environment {
-		dockerImage =''
-		registry =  'amit873/devops:2'
+		registry = "amit873/test77" 
+	        registryCredential = 'dockerhub_id' 
 		PROJECT_ID = 'jenkins-296812'
                 CLUSTER_NAME = 'k8s-cluster'
                 LOCATION = 'us-central1-c'
@@ -26,41 +26,17 @@ pipeline {
 		    }
 	    }
 	    
-	    stage('Test') {
-		    steps {
-			    echo "Testing..."
-			    sh 'mvn test'
-		    }
-	    }
 	    
-	    stage('Build Docker Image') {
-		    steps {
-			    sh 'whoami'
-			    script {
-				    myimage = docker.build registry
-			    }
-		    }
-	    }
 	    
-	    stage("Push Docker Image") {
-		    steps {
-			    script {
-				    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-					    myimage.push("${env.BUILD_ID}")
-				    }
-			    }
-		    }
-	    }
+	    stage('Building our image') { 
+            	steps { 
+                	script { 
+                    		dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                	}
+            	} 
+           }
 	    
-	    stage('Deploy to K8s') {
-		    steps{
-			    echo "Deployment started ..."
-			    sh 'ls -ltr'
-			    sh 'pwd'
-			    sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
-			    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
-			    echo "Deployment Finished ..."
-		    }
-	    }
+	    
+	   
     }
 }
