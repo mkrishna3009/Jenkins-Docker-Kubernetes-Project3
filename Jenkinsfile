@@ -44,8 +44,10 @@ pipeline {
 		    steps {
 			    script {
 				    echo "Push Docker Image"
-				    docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_HUB_CREDENTIALS') {
-					    myimage.push()
+				    withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+            				sh "docker login -u ameintu -p ${DOCKER_HUB_CREDENTIALS}"
+				    }
+				        myimage.push()
 				    }
 			    }
 		    }
