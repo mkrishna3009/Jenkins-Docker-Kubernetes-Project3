@@ -5,6 +5,8 @@ pipeline {
 	}
 	
 	environment {
+		dockerImage =''
+		registry =  'amit873/devops:2'
 		PROJECT_ID = 'jenkins-296812'
                 CLUSTER_NAME = 'k8s-cluster'
                 LOCATION = 'us-central1-c'
@@ -35,7 +37,7 @@ pipeline {
 		    steps {
 			    sh 'whoami'
 			    script {
-				    myimage = docker.build('amit873/devops:2')
+				    myimage = docker.build registry
 			    }
 		    }
 	    }
