@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>k8sDemo.devops.gcp</groupId>
     <artifactId>k8sDemo</artifactId>
-    <version>1.0-SANDEEP</version>
+    <version>1.0-AMIT</version>
     <packaging>pom</packaging>
     <name>Project Build</name>
 
